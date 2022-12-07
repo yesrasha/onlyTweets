@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -14,6 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +28,10 @@ import javafx.scene.text.Font;
 import model.FeedObserver;
 import model.Observer;
 import model.Post;
+import model.User;
+import model.UserBag;
 import view.PostItemView;
+import view.UserItemView;
 
 
 public class MainViewController implements Initializable,FeedObserver {
@@ -57,6 +65,10 @@ public class MainViewController implements Initializable,FeedObserver {
 
     @FXML
     private VBox postContainer;
+    
+    @FXML 
+    private VBox usersVBox;
+    
 
 
     @FXML
@@ -92,9 +104,46 @@ public class MainViewController implements Initializable,FeedObserver {
 		textArea.setStyle("-fx-font-fill:black;");
 		// lets call initial update
 		update(Main.bag.getLoggedInUser().getFeed());
+		
+		
 		Main.bag.getLoggedInUser().registerObserver(this);
+		update();
 		postBtn.setOnAction( e ->{
-			Post post = new Post(textArea.getText(),Main.bag.getLoggedInUser());
+			String text =textArea.getText();
+			if(text.isBlank()) return;
+			
+			List<String> misspelled = Main.dict.getWrongWords(text.split(" "));
+			System.out.println(misspelled);
+			if(misspelled.size() > 0) {
+				//OPEN MODAL pass list of words
+				try {
+					FXMLLoader fxmlLoader = new FXMLLoader();
+					fxmlLoader.setLocation(getClass().getResource("../view/SpellCheckDialog.fxml"));
+					DialogPane dialogPane = fxmlLoader.load();
+					SpellCheckDialogController controller = fxmlLoader.getController();
+					controller.setMisspelledWords(misspelled);
+					
+					Dialog<ButtonType> dialog = new Dialog<>();
+					dialog.setDialogPane(dialogPane);
+					dialog.setTitle("Misspelled Button");
+					
+					Optional<ButtonType> clickedButton = dialog.showAndWait();
+					
+					if(clickedButton.get() == ButtonType.OK) {
+						Post post = new Post(text,Main.bag.getLoggedInUser());
+						Main.bag.getLoggedInUser().addPost(post);
+						textArea.clear();
+					}
+					
+				}
+				
+				catch(Exception ed) {
+					ed.printStackTrace();
+				}
+				return;
+			}
+			
+			Post post = new Post(text,Main.bag.getLoggedInUser());
 			Main.bag.getLoggedInUser().addPost(post);
 			textArea.clear();
 			
@@ -109,6 +158,17 @@ public class MainViewController implements Initializable,FeedObserver {
 			postItems[i++]=(new PostItemView(post).getRoot());
 		}
 		postContainer.getChildren().setAll(postItems);
+		
+	}
+	
+	public void update() {
+		UserBag bag = Main.bag;
+		Node[] userItems = new Node[bag.size()];
+		int i = 0;
+		for(User user: bag) {
+			userItems[i++] = new UserItemView(user,Main.bag.getLoggedInUser(),this).getRoot();
+		}
+		usersVBox.getChildren().setAll(userItems);
 	}
 
 	

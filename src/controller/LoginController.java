@@ -17,39 +17,45 @@ import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable {
 
-    @FXML
-    private PasswordField passwordTextField;
+	@FXML
+	private PasswordField passwordTextField;
 
-    @FXML
-    private Button signInBtn;
+	@FXML
+	private Button signInBtn;
 
-    @FXML
-    private TextField usernameTextField;
-    
-    @FXML
-    private Label signUpBtn;
-    
+	@FXML
+	private TextField usernameTextField;
+
+	@FXML
+	private Label signUpBtn;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		signInBtn.setOnAction(e ->{
-			String username = usernameTextField.getText(),
-				   password = passwordTextField.getText();
-			
+
+		signInBtn.setOnAction(e -> {
+			String username = usernameTextField.getText(), password = passwordTextField.getText();
+
 			boolean success = Main.bag.login(username, password);
-			
-			if(success) {
-				Parent registerView = loadResource("../view/MainView.fxml");
-		    	Main.stage.setTitle("Home");
-				Scene scene = new Scene(registerView);
-				scene.getStylesheets().add(getClass().getResource("../styles/application.css").toExternalForm());
-				Main.stage.setScene(scene);
-				Main.stage.show();
+
+			System.out.println(success);
+
+			if (success) {
+
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
+					Main.stage.setTitle("Home");
+					Scene scene = new Scene(root);
+					scene.getStylesheets().add(getClass().getResource("../styles/application.css").toExternalForm());
+					Main.stage.setScene(scene);
+					Main.stage.show();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
-		
-		signUpBtn.setOnMouseClicked( e ->{
+
+		signUpBtn.setOnMouseClicked(e -> {
 			Parent root;
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/RegisterScreen.fxml"));
@@ -63,27 +69,7 @@ public class LoginController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-		
-		
-		
-	}
-	
-	public Parent loadResource(String resourcePath) {
 
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(resourcePath));
-		Parent view;
-		try {
-			view = (Parent) loader.load();
-			return view;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
 	}
-	
-	
 
 }

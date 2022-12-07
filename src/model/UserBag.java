@@ -1,11 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 import utils.BackUpRestoreTools;
 
-public class UserBag implements Serializable {
+public class UserBag implements Serializable,Iterable<User> {
 	
 	private TreeMap<String,User> bag;
 	
@@ -35,6 +36,11 @@ public class UserBag implements Serializable {
 		
 		return false;
 
+	}
+	
+	public int size() {
+		return bag.size();
+		
 	}
 	
 	public boolean addUser(User user) {
@@ -85,13 +91,12 @@ public class UserBag implements Serializable {
 	}
 	
 	public static void main(String[] args) {
-		
+//		
 //		User user = new User("Umair","Allah@123");
 //		UserBag bag = new UserBag();
 //		bag.addUser(user);
-//		
 //		BackUpRestoreTools.backupUserBag(bag);
-		
+//		
 		UserBag bag = BackUpRestoreTools.restoreUserBag();
 		System.out.println(bag.login("UmAir", "Allah@123"));
 		
@@ -101,6 +106,11 @@ public class UserBag implements Serializable {
 		
 		return addUser(new User(username.toLowerCase(),password));
 		 
+	}
+
+	@Override
+	public Iterator<User> iterator() {
+		return bag.values().iterator();
 	}
 	
 	

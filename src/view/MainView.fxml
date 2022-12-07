@@ -49,9 +49,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -94,7 +93,7 @@
     </MenuBar>
     <SplitPane fx:id="splitPane" dividerPositions="0.2505567928730512, 0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-            <VBox style="-fx-background-color: #000000;">
+            <VBox spacing="5.0" style="-fx-background-color: #000000;">
                <children>
                   <Button fx:id="homeBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handleHomeClick" prefHeight="84.0" prefWidth="222.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home" textFill="WHITE">
                      <font>
@@ -116,21 +115,21 @@
                   </Button>
                </children>
             </VBox>
-            <VBox fx:id="home" prefHeight="551.0" prefWidth="429.0" style="-fx-background-color: #000000;">
+            <VBox fx:id="home" prefHeight="551.0" prefWidth="429.0" spacing="6.0" style="-fx-background-color: #000000;">
                <children>
                   <Label text="Home" textFill="WHITE">
                      <font>
                         <Font size="58.0" />
                      </font>
                   </Label>
-                  <VBox alignment="CENTER_RIGHT">
+                  <VBox alignment="CENTER_RIGHT" spacing="5.0">
                      <children>
-                        <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" promptText="Whats happening?" style="fx-text-fill: white;">
+                        <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" promptText="Whats happening?" style="fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px;" wrapText="true">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </TextArea>
-                        <Button fx:id="postBtn" mnemonicParsing="false" prefHeight="37.0" prefWidth="69.0" text="Post" />
+                        <Button fx:id="postBtn" mnemonicParsing="false" prefHeight="37.0" prefWidth="69.0" style="-fx-font-weight: bold;" styleClass=".modern-btn" text="tweet" textFill="#f5eeee" />
                      </children>
                   </VBox>
                   <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="228.0" prefWidth="218.0" style="-fx-background-color: black;">
@@ -146,141 +145,11 @@
                         <TextField prefHeight="25.0" prefWidth="430.0" promptText="Search..." />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UmairIqbal" wrappingWidth="158.13671875">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers:" wrappingWidth="102.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="25" wrappingWidth="26.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" text="follow" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="35.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UmairIqbal" wrappingWidth="158.13671875">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers:" wrappingWidth="102.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="25" wrappingWidth="26.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" text="follow" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="135.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UmairIqbal" wrappingWidth="158.13671875">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers:" wrappingWidth="102.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="25" wrappingWidth="26.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" text="follow" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="235.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UmairIqbal" wrappingWidth="158.13671875">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers:" wrappingWidth="102.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="25" wrappingWidth="26.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" text="follow" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="335.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UmairIqbal" wrappingWidth="158.13671875">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers:" wrappingWidth="102.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="25" wrappingWidth="26.13671875">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" text="follow" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
+                  <VBox fx:id="usersVBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="523.0" prefWidth="446.0" spacing="10.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
             </VBox>
       </items>

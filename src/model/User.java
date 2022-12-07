@@ -27,6 +27,10 @@ public class User implements Serializable,Subject,Observer,FeedSubject{
 		feedObservers = new LinkedList<>();
 		
 	}
+	
+	public List<Observer> getFollowers(){
+		return followers;
+	}
 
 	public String getUsername() {
 		return username;
@@ -96,7 +100,7 @@ public class User implements Serializable,Subject,Observer,FeedSubject{
 		// follow this other user
 		user.registerObserver(this);
 		
-		for(Post post : user.getFeed()) {
+		for(Post post : user.getPosts()) {
 			this.feed.add(post);
 		}
 		
@@ -121,7 +125,6 @@ public class User implements Serializable,Subject,Observer,FeedSubject{
 	@Override
 	public void removeObserver(FeedObserver o) {
 		feedObservers.remove(o);
-		
 	}
 
 	@Override
@@ -135,6 +138,11 @@ public class User implements Serializable,Subject,Observer,FeedSubject{
 	public void clearUIObservers(){
 		this.feedObservers.clear();
 	}
+	
+	
+	
+	
+	
 
 	
 

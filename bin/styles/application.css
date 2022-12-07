@@ -8,6 +8,10 @@
   -fx-cursor: hand;
 }
 
+.link:hover {
+  -fx-text-fill: green;
+}
+
 .text-area {
   -fx-text-fill: white;
 }
@@ -24,12 +28,13 @@
   -fx-border-color: red red red red;
 }
 
-.modern-btn {
+Button {
   -fx-background-radius: 20px;
-  -fx-background-color: rgba(0, 83, 255, 0.54);
+  -fx-text-fill: white;
+  -fx-background-color: #26a7de;
 }
 
-.modern-btn:hover {
+Button:hover {
   -fx-background-color: rgba(0, 83, 255, 0.84);
 }
 

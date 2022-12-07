@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Dictionary;
 import model.UserBag;
 import utils.BackUpRestoreTools;
 
@@ -15,6 +16,7 @@ public class Main extends Application {
 
 	public static UserBag bag = BackUpRestoreTools.restoreUserBag();
 	public static Stage stage;
+	public static Dictionary dict = new Dictionary();
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -25,7 +27,7 @@ public class Main extends Application {
 		
 		stage = primaryStage;
 		
-		Parent root = FXMLLoader.load(getClass().getResource("../view/SplashScreen.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
 		primaryStage.setTitle("Login");
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../styles/application.css").toExternalForm());
