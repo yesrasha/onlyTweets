@@ -27,7 +27,7 @@ public class Main extends Application {
 		
 		stage = primaryStage;
 		
-		Parent root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../view/SplashScreen.fxml"));
 		primaryStage.setTitle("Login");
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../styles/application.css").toExternalForm());
@@ -39,6 +39,7 @@ public class Main extends Application {
 	@Override
 	public void stop() throws Exception {
 		bag.getLoggedInUser().clearUIObservers();
+		
 		BackUpRestoreTools.backupUserBag(bag);
 		super.stop();
 	}
