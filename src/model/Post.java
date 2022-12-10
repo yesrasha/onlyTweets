@@ -1,22 +1,36 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeSet;
 
-public class Post implements Serializable,Comparable<Post> {
+import javafx.scene.Node;
+
+public class Post implements Serializable,Comparable<Post>, Subject {
 
 	private String text;
 	private User ownerAccount;
 	private String date;
 	private String ownerUsername;
 	private Date dateObj;
+	private LinkedList<Post> replies;
+	private List<Observer> observers;
 
 	public Post(String text, User ownerAccount) {
 		this.text = text;
 		this.ownerAccount = ownerAccount;
 		this.dateObj = new Date();
 		this.date = dateObj.toString();
+		this.replies = new LinkedList<>();
+		this.observers = new ArrayList<>();
+	}
+	
+	public void addReply(Post post) {
+		replies.add(post);
+		notifyObservers(this);
 	}
 	
 	public Date getDateObj() {
@@ -77,6 +91,33 @@ public class Post implements Serializable,Comparable<Post> {
 		return "Post [text=" + text +  ", date=" + date + ", ownerUsername="
 				+ ownerUsername + ", dateObj=" + dateObj + "]";
 	}
+
+	@Override
+	public void registerObserver(Observer o) {
+		this.observers.add(o);
+	}
+
+	@Override
+	public void removeObserver(Observer o) {
+		this.observers.remove(o);
+	}
+
+	@Override
+	public void notifyObservers(Post newPost) {
+		for(Observer ob: observers) {
+			ob.update(newPost);
+		}
+	}
+	
+	public void clearSubscribers() {
+		observers.clear();
+	}
+
+	public LinkedList<Post> getReplies() {
+		// TODO Auto-generated method stub
+		return this.replies;
+	}
+
 	
 	
 

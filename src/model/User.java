@@ -137,6 +137,7 @@ public class User implements Serializable,Subject,Observer,FeedSubject{
 	
 	public void clearUIObservers(){
 		this.feedObservers.clear();
+		for(Post post : feed) post.clearSubscribers();
 	}
 	
 	
